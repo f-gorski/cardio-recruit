@@ -5,18 +5,27 @@
       <Table>
         <HeaderRow>
           <HeaderCell title="Name" />
-          <HeaderCell title="Created At" />
+          <HeaderCell title="Created On" />
+          <HeaderCell title="Released On" />
           <HeaderCell title="Status" />
         </HeaderRow>
 
         <Row v-for="signal in signals" :key="signal.id">
           <NameCell :name="signal.name" :isNew="signal.new" />
           <DateCell :date="signal.created_at" />
+          <DateCell :date="signal.released_at" />
           <StatusCell :status="signal.status" />
-          <!-- <RecencyCell :isRecent="signal.new" /> -->
           <LinkCell :to="signal.id" />
         </Row>
       </Table>
+      <Pagination
+        :totalItems="pagination.totalItems"
+        :totalPages="pagination.totalPages"
+        :currentPage="pagination.currentPage"
+        :perPage="pagination.perPage"
+        @page-changed="handlePageChange"
+        @per-page-changed="handlePerPageChange"
+      />
     </PageContent>
   </PageContainer>
 </template>
@@ -24,8 +33,7 @@
 <script>
 import cardioAPI from "../api/cardioAPI"
 import { mapGetters } from "vuex"
-
-import mockSignals from "../mockSignals.js"
+import debounce from "lodash.debounce"
 
 import PageContainer from "../components/layout/PageContainer.vue"
 import PageTitle from "../components/layout/PageTitle.vue"
@@ -40,7 +48,7 @@ import LinkCell from "../components/table/cells/LinkCell.vue"
 import StatusCell from "../components/table/cells/StatusCell.vue"
 import TextCell from "../components/table/cells/TextCell.vue"
 import NameCell from "../components/table/cells/NameCell.vue"
-// import RecencyCell from "../components/table/cells/RecencyCell.vue"
+import Pagination from "../components/pagination/Pagination.vue"
 
 export default {
   components: {
@@ -56,31 +64,61 @@ export default {
     StatusCell,
     TextCell,
     NameCell,
-    // RecencyCell,
+    Pagination,
   },
   data() {
     return {
       signals: [],
+      pagination: {
+        currentPage: 1,
+        perPage: 1,
+        totalPages: 10,
+      },
     }
   },
   computed: {
     ...mapGetters(["token"]),
   },
+  methods: {
+    handleFirstPage() {
+      this.loadSignals(this.pagination.first)
+    },
+    handlePrevPage() {
+      this.loadSignals(this.pagination.prev)
+    },
+    handleNextPage() {
+      this.loadSignals(this.pagination.next)
+    },
+    handleLastPage() {
+      this.loadSignals(this.pagination.last)
+    },
+    handlePageChange(page) {
+      this.debouncedLoadSignals("/signals", {
+        page,
+        per_page: this.pagination.perPage,
+      })
+    },
+    handlePerPageChange(perPage) {
+      this.debouncedLoadSignals("/signals", {
+        page: 1,
+        per_page: perPage,
+      })
+    },
+    async loadSignals(url = "/signals", params) {
+      const { data, pagination } = await cardioAPI.get(url, params)
+
+      this.signals = data
+      this.pagination = pagination
+    },
+  },
   async mounted() {
-    console.log(this.token)
-    const linkHeader =
-      "<https://app.cardiomatics.com/api/v2/signals?page=2&per_page=1&private_token=8c8d960848cb272a655b68f9baa7d19b4b418060>; rel='next', <https://app.cardiomatics.com/api/v2/signals?page=1&per_page=1&private_token=8c8d960848cb272a655b68f9baa7d19b4b418060>; rel='first', <https://app.cardiomatics.com/api/v2/signals?page=3&per_page=1&private_token=8c8d960848cb272a655b68f9baa7d19b4b418060>; rel='last'"
-    const links = linkHeader.split(",")
-    const [nextLink, rel] = links
-      .filter((link) => {
-        return link.split(";")[1] === " rel='next'"
-      })[0]
-      .split(";")
-
-    console.log("nextLinkn", nextLink)
-
-    // this.signals = await cardioAPI.get("/signals", { per_page: 1 })
-    this.signals = mockSignals
+    await this.loadSignals("/signals", {
+      page: this.pagination.currentPage,
+      per_page: this.pagination.perPage,
+    })
+  },
+  created() {
+    this.debouncedLoadSignals = debounce(this.loadSignals, 500)
   },
 }
 </script>

@@ -7,9 +7,6 @@ export default {
   props: {
     title: { type: String },
   },
-  mounted() {
-    console.log("title mounted", this.title)
-  },
 }
 </script>
 

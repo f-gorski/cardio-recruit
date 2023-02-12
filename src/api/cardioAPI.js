@@ -1,6 +1,8 @@
 import axios from "axios"
 import store from "../store"
 
+import { parsePaginationHeaders } from "./utils/parse_pagination_headers"
+
 const API_VERSION = "v2"
 const API_DOMAIN = "app.cardiomatics.com"
 
@@ -18,8 +20,10 @@ baseApi.interceptors.request.use((config) => {
 const get = async (path, params = {}) => {
   try {
     const response = await baseApi.get(path, { params })
-    console.log(response.headers["link"])
-    return response.data
+    return {
+      data: response.data,
+      pagination: parsePaginationHeaders(response.headers),
+    }
   } catch (error) {
     console.error(error)
   }
