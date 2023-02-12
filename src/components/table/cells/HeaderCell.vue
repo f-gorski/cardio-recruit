@@ -1,12 +1,68 @@
 <template>
-  <td class="header-row__cell">{{ title }}</td>
+  <td @click="toggleSort" class="header-row__cell">
+    {{ title }}
+    <span>
+      <span v-if="isSortingAscending">
+        <ArrowUp class="header-row__arrow" />
+      </span>
+      <span v-if="isSortingDescending">
+        <ArrowDown class="header-row__arrow" />
+      </span>
+    </span>
+  </td>
 </template>
 
 <script>
+import ArrowUp from "../../icons/ArrowUp.vue"
+import ArrowDown from "../../icons/ArrowDown.vue"
+
+const SORTING_ENUM = {
+  descending: 1,
+  ascending: 0,
+}
+
 export default {
+  components: {
+    ArrowUp,
+    ArrowDown,
+  },
   props: {
     title: { type: String },
+    currentSorting: { required: false },
+    sort: { required: true },
   },
+  // data() {
+  //   return {
+  //     sort: undefined,
+  //   }
+  // },
+  computed: {
+    isSortingAscending() {
+      return this.sort === SORTING_ENUM.ascending
+    },
+    isSortingDescending() {
+      return this.sort === SORTING_ENUM.descending
+    },
+  },
+  methods: {
+    toggleSort() {
+      let sortingOrder = undefined
+
+      if (this.sort == null) sortingOrder = SORTING_ENUM.descending
+      if (this.isSortingAscending) sortingOrder = SORTING_ENUM.descending
+      if (this.isSortingDescending) sortingOrder = SORTING_ENUM.ascending
+
+      this.$emit("input", sortingOrder)
+    },
+  },
+  // watch: {
+  //   sort(newSort) {
+  //     this.$emit("input", newSort)
+  //   },
+  //   currentSorting(currentSorting) {
+  //     if (currentSorting == null) this.sort = undefined
+  //   },
+  // },
 }
 </script>
 
@@ -20,5 +76,12 @@ export default {
 }
 .header-row__cell:hover {
   background-color: #2e3846;
+}
+.header-row__arrow {
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  width: 10px;
+  height: 10px;
 }
 </style>
