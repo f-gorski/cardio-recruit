@@ -17,9 +17,14 @@ baseApi.interceptors.request.use((config) => {
   return config
 })
 
-const get = async (path, params = {}) => {
+const get = async (path, params = {}, config) => {
   try {
-    const response = await baseApi.get(path, { params })
+    const response = await baseApi.get(path, { params }, config)
+    if (!response.headers["x-total"]) {
+      return {
+        data: response.data,
+      }
+    }
     return {
       data: response.data,
       pagination: parsePaginationHeaders(response.headers),

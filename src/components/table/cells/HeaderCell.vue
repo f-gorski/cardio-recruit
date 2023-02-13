@@ -73,14 +73,12 @@ export default {
   color: rgb(222, 222, 222);
   font-weight: 600;
   text-transform: uppercase;
+  cursor: pointer;
 }
 .header-row__cell:hover {
   background-color: #2e3846;
 }
 .header-row__arrow {
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
   width: 10px;
   height: 10px;
 }

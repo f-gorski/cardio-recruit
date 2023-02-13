@@ -46,7 +46,7 @@ p {
   width: 64px;
   height: 64px;
   margin: 8px;
-  border: 8px solid #6916a0;
+  border: 8px solid #33f5b7;
   border-radius: 50%;
   animation: loader 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
   border-color: #33f5b7 transparent transparent transparent;

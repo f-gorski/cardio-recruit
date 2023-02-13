@@ -2,6 +2,7 @@
   <PageContainer>
     <PageTitle title="Signals" />
     <PageContent>
+      <ActionsBar />
       <LoadingSpinner v-if="isLoading" :active="true" />
       <Table v-else-if="!isEmpty">
         <HeaderRow>
@@ -56,6 +57,7 @@ import cardioAPI from "../api/cardioAPI"
 import { mapGetters } from "vuex"
 import debounce from "lodash.debounce"
 
+import ActionsBar from "./ActionsBar.vue"
 import LoadingSpinner from "../components/loading/LoadingSpinner.vue"
 import PageContainer from "../components/layout/PageContainer.vue"
 import PageTitle from "../components/layout/PageTitle.vue"
@@ -75,6 +77,7 @@ import SignalsEmpty from "./SignalsEmpty.vue"
 
 export default {
   components: {
+    ActionsBar,
     LoadingSpinner,
     PageContainer,
     PageTitle,
