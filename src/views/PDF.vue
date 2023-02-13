@@ -51,7 +51,6 @@ export default {
             document.body.removeChild(fileLink)
             URL.revokeObjectURL(url)
           }, 100)
-          //   saveAs(content, "files.zip")
         })
       })
     },

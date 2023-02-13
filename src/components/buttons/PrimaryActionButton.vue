@@ -1,5 +1,5 @@
 <template>
-  <button @click="onClick" :disabled="disabled" class="primary-action-btn">
+  <button :disabled="disabled" class="primary-action-btn">
     <slot />
   </button>
 </template>
@@ -8,11 +8,6 @@
 export default {
   props: {
     disabled: { type: Boolean, required: false, default: false },
-  },
-  methods: {
-    onClick() {
-      this.$emit("click")
-    },
   },
 }
 </script>

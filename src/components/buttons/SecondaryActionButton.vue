@@ -1,20 +1,13 @@
 <template>
-  <button
-    @click="onClick"
-    :disabled="disabled"
-    class="secondary-action-btn"
-    :class="{ 'secondary-action-btn--large': large }"
-  >
+  <button :disabled="disabled" class="secondary-action-btn">
     <slot />
   </button>
 </template>
 
 <script>
 export default {
-  methids: {
-    onClick() {
-      this.$emit("click")
-    },
+  props: {
+    disabled: { type: Boolean, required: false, default: false },
   },
 }
 </script>
@@ -35,7 +28,7 @@ export default {
 }
 
 .secondary-action-btn:hover {
-  background-color: #2e3846;
+  background-color: #1c222b;
 }
 .secondary-action-btn:disabled {
   opacity: 0.3;

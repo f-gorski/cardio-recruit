@@ -6,12 +6,8 @@
     >
   </div>
 
-  <v-dialog max-width="750" persistent v-model="showDownloadModal">
-    <PDFDownload
-      @download-all="downloadAllPDFs"
-      @download-new="downloadNewPDFs"
-      @closed="toggleDownloadModal(false)"
-    />
+  <v-dialog v-model="showDownloadModal" max-width="500">
+    <PDFDownload @closed="toggleDownloadModal(false)" />
   </v-dialog>
 </template>
 
@@ -35,8 +31,6 @@ export default {
     toggleDownloadModal(isShown) {
       this.showDownloadModal = isShown
     },
-    downloadAllPDFs() {},
-    downloadNewPDFs() {},
   },
 }
 </script>

@@ -30,7 +30,7 @@ const get = async (path, params = {}, config) => {
       pagination: parsePaginationHeaders(response.headers),
     }
   } catch (error) {
-    console.error(error)
+    throw new Error(error.message)
   }
 }
 
