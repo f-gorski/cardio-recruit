@@ -31,11 +31,6 @@ export default {
     currentSorting: { required: false },
     sort: { required: true },
   },
-  // data() {
-  //   return {
-  //     sort: undefined,
-  //   }
-  // },
   computed: {
     isSortingAscending() {
       return this.sort === SORTING_ENUM.ascending
@@ -55,14 +50,6 @@ export default {
       this.$emit("input", sortingOrder)
     },
   },
-  // watch: {
-  //   sort(newSort) {
-  //     this.$emit("input", newSort)
-  //   },
-  //   currentSorting(currentSorting) {
-  //     if (currentSorting == null) this.sort = undefined
-  //   },
-  // },
 }
 </script>
 
