@@ -1,5 +1,5 @@
 <template>
-  <TokenForm v-if="!hasToken" />
+  <AddToken v-if="!hasToken" />
   <Signals v-else />
 </template>
 
@@ -7,10 +7,10 @@
 import { mapGetters } from "vuex"
 
 import Signals from "./views/Signals.vue"
-import TokenForm from "./views/TokenForm.vue"
+import AddToken from "./views/AddToken.vue"
 
 export default {
-  components: { Signals, TokenForm },
+  components: { Signals, AddToken },
   computed: {
     ...mapGetters(["hasToken"]),
   },

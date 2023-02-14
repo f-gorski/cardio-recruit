@@ -34,11 +34,9 @@ export default {
   }),
   methods: {
     downloadAllPDFs() {
-      console.log("triggered all")
       this.downloadPDFs()
     },
     downloadNewPDFs() {
-      console.log("triggered new")
       this.downloadPDFs({ new: true })
     },
 

@@ -9,11 +9,6 @@ const router = createRouter({
       name: "signals",
       component: Signals,
     },
-    {
-      path: "/token-form",
-      name: "token-form",
-      component: () => import("../views/TokenForm.vue"),
-    },
   ],
 })
 

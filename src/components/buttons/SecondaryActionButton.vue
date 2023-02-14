@@ -22,7 +22,6 @@ export default {
   border-radius: 5px;
   color: white;
   background-color: #374151;
-  display: flex;
   align-items: center;
   cursor: pointer;
 }
