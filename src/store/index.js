@@ -1,11 +1,9 @@
 import { createStore } from "vuex"
-// const TOKEN = import.meta.env.VITE_PRIVATE_TOKEN
-const TOKEN = ""
 
 export default createStore({
   state() {
     return {
-      token: TOKEN || "",
+      token: "",
     }
   },
   mutations: {
