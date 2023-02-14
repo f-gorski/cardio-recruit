@@ -29,7 +29,7 @@
           :disabled="page.isDisabled"
           type="button"
           class="pagination__btn"
-          :class="{ active: isPageActive(page.key) }"
+          :class="{ 'pagination__btn--active': isPageActive(page.key) }"
         >
           {{ page.key }}
         </button>
@@ -90,7 +90,7 @@ export default {
       }
 
       if (this.isInLastPage) {
-        return this.totalPages - this.maxVisibleButtons + 1
+        return Math.max(1, this.totalPages - this.maxVisibleButtons + 1)
       }
 
       return this.currentPage - 1
@@ -151,6 +151,7 @@ export default {
   width: 100%;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
 }
 .pagination {
   margin-left: auto;
@@ -182,7 +183,7 @@ export default {
   opacity: 0.5;
   cursor: not-allowed;
 }
-.active {
+.pagination__btn--active {
   background-color: #111827;
   color: white;
 }
@@ -194,11 +195,24 @@ export default {
   max-height: 30px;
   border-radius: 3px;
   border: none;
+  height: 1.5rem;
 }
 .pagination__per-page-text {
   margin: 0 0.5rem;
   color: white;
   display: flex;
   align-items: center;
+}
+
+@media (max-width: 480px) {
+  .pagination-container {
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .pagination {
+    margin-left: initial;
+  }
 }
 </style>

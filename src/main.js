@@ -3,7 +3,8 @@ import router from "./router"
 
 import store from "./store"
 import App from "./App.vue"
-import "./assets/main.css"
+import "./assets/base.css"
+import "normalize.css"
 
 import { createVuetify } from "vuetify"
 import * as components from "vuetify/components"

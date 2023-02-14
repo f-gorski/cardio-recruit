@@ -64,8 +64,6 @@ export default {
   left: 50%;
   top: 50%;
   transform: translateX(-50%) translateY(-50%);
-  /* min-width: 400px;
-  max-width: 700px; */
   width: 390px;
   background-color: white;
   display: flex;
@@ -91,5 +89,14 @@ export default {
   margin-top: 2rem;
   display: flex;
   justify-content: center;
+}
+@media (max-width: 480px) {
+  .token-form {
+    width: 100%;
+  }
+  .token-form__form-area {
+    padding: 0 2rem;
+    width: 75%;
+  }
 }
 </style>

@@ -33,14 +33,15 @@ export default {
 <style>
 .text-input {
   width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 .text-input__field {
-  width: 100%;
-  height: 2rem;
+  height: 1.25rem;
   padding: 0.75rem;
 }
 .text-input__error {
-  font-size: 12px;
+  font-size: 0.75rem;
   color: rgb(189, 2, 2);
 }
 </style>

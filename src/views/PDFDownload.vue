@@ -98,4 +98,10 @@ export default {
   color: rgb(189, 2, 2);
   font-weight: bold;
 }
+@media (max-width: 480px) {
+  .pdf-files-download__actions {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
 </style>

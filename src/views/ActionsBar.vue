@@ -45,4 +45,12 @@ export default {
 .actions-bar > * {
   margin-left: 20px;
 }
+
+@media (max-width: 480px) {
+  .actions-bar {
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+}
 </style>

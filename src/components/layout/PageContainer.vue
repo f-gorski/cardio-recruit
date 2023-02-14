@@ -10,9 +10,9 @@ export default {}
 
 <style>
 .page {
-  width: 100%;
-  height: 100vh;
-  /* height: 100%; */
+  top: 0;
+  left: 0;
+  height: calc(100vh - 3rem);
   padding: 1.5rem;
   background-color: #1f2937;
 }

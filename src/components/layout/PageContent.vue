@@ -8,6 +8,8 @@ export default {}
 
 <style>
 .page__content {
+  margin: 0 auto;
   margin-top: 1.5rem;
+  max-width: 95%;
 }
 </style>
