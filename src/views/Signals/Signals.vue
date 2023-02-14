@@ -36,6 +36,8 @@
         </Row>
       </Table>
 
+      <SignalsError v-else-if="isErrored" />
+
       <SignalsEmpty v-else />
 
       <Pagination
@@ -71,6 +73,7 @@ import {
 
 import Pagination from "../../components/pagination/Pagination.vue"
 import SignalsEmpty from "./SignalsEmpty.vue"
+import SignalsError from "./SignalsError.vue"
 
 export default {
   components: {
@@ -89,6 +92,7 @@ export default {
     NameCell,
     Pagination,
     SignalsEmpty,
+    SignalsError,
   },
   data() {
     return {
@@ -105,6 +109,7 @@ export default {
         status: undefined,
       },
       isLoading: undefined,
+      isErrored: false,
     }
   },
   computed: {
@@ -164,20 +169,33 @@ export default {
     },
 
     async loadSignals(url = "/signals", params) {
-      this.signals = []
-      this.isLoading = true
-      const { data, pagination } = await cardioAPI.get(url, params)
+      try {
+        this.signals = []
+        this.isLoading = true
+        this.isErrored = false
+        const { data, pagination } = await cardioAPI.get(url, params)
 
-      this.signals = data
-      this.pagination = pagination
-      this.isLoading = false
+        this.signals = data
+        this.pagination = pagination
+        this.isLoading = false
+      } catch (error) {
+        this.isErrored = true
+        this.isLoading = false
+      }
     },
   },
   async mounted() {
-    await this.loadSignals("/signals", {
-      page: this.pagination.currentPage,
-      per_page: this.pagination.perPage,
-    })
+    try {
+      this.isLoading = true
+      await this.loadSignals("/signals", {
+        page: this.pagination.currentPage,
+        per_page: this.pagination.perPage,
+      })
+      this.isLoading = false
+    } catch (error) {
+      this.isErrored = true
+      this.isLoading = false
+    }
   },
   created() {
     this.debouncedLoadSignals = debounce(this.loadSignals, 500)
