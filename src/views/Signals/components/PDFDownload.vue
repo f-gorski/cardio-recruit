@@ -21,10 +21,10 @@
 </template>
 
 <script>
-import SecondaryActionButton from "../components/buttons/SecondaryActionButton.vue"
-import XBtn from "../components/icons/XBtn.vue"
+import { SecondaryActionButton } from "../../../components/buttons"
+import { XBtn } from "../../../components/icons"
 
-import { fetchPDFs } from "../utils/pdf_downloader"
+import { fetchPDFs } from "../../../utils/pdf_downloader"
 
 export default {
   components: { SecondaryActionButton, XBtn },

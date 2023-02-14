@@ -13,8 +13,7 @@
 </template>
 
 <script>
-import ArrowUp from "../../icons/ArrowUp.vue"
-import ArrowDown from "../../icons/ArrowDown.vue"
+import { ArrowUp, ArrowDown } from "../../icons"
 
 const SORTING_ENUM = {
   descending: 1,

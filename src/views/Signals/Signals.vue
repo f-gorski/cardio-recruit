@@ -33,7 +33,6 @@
           <DateCell :date="signal.created_at" />
           <DateCell :date="signal.released_at" />
           <StatusCell :status="signal.status" />
-          <LinkCell :to="signal.id" />
         </Row>
       </Table>
 
@@ -53,26 +52,24 @@
 </template>
 
 <script>
-import cardioAPI from "../api/cardioAPI"
+import cardioAPI from "../../api/cardioAPI"
 import { mapGetters } from "vuex"
 import debounce from "lodash.debounce"
 
-import ActionsBar from "./ActionsBar.vue"
-import LoadingSpinner from "../components/loading/LoadingSpinner.vue"
-import PageContainer from "../components/layout/PageContainer.vue"
-import PageTitle from "../components/layout/PageTitle.vue"
-import PageContent from "../components/layout/PageContent.vue"
-import Table from "../components/table/Table.vue"
-import HeaderRow from "../components/table/rows/HeaderRow.vue"
-import Row from "../components/table/rows/Row.vue"
+import ActionsBar from "./components/ActionsBar.vue"
+import LoadingSpinner from "../../components/loading/LoadingSpinner.vue"
+import { PageContainer, PageTitle, PageContent } from "../../components/layout"
+import Table from "../../components/table/Table.vue"
+import { HeaderRow, Row } from "../../components/table/rows"
+import {
+  HeaderCell,
+  DateCell,
+  StatusCell,
+  TextCell,
+  NameCell,
+} from "../../components/table/cells"
 
-import HeaderCell from "../components/table/cells/HeaderCell.vue"
-import DateCell from "../components/table/cells/DateCell.vue"
-import LinkCell from "../components/table/cells/LinkCell.vue"
-import StatusCell from "../components/table/cells/StatusCell.vue"
-import TextCell from "../components/table/cells/TextCell.vue"
-import NameCell from "../components/table/cells/NameCell.vue"
-import Pagination from "../components/pagination/Pagination.vue"
+import Pagination from "../../components/pagination/Pagination.vue"
 import SignalsEmpty from "./SignalsEmpty.vue"
 
 export default {
@@ -87,7 +84,6 @@ export default {
     Row,
     HeaderCell,
     DateCell,
-    LinkCell,
     StatusCell,
     TextCell,
     NameCell,

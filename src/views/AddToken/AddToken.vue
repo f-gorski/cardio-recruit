@@ -8,9 +8,7 @@
 </template>
 
 <script>
-import PageContainer from "../components/layout/PageContainer.vue"
-import PageContent from "../components/layout/PageContent.vue"
-import PageTitle from "../components/layout/PageTitle.vue"
+import { PageContainer, PageContent, PageTitle } from "../../components/layout"
 import AddTokenForm from "./AddTokenForm.vue"
 
 export default {

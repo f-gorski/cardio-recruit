@@ -12,8 +12,8 @@
 
 <script>
 import { mapActions } from "vuex"
-import SecondaryActionButton from "../components/buttons/SecondaryActionButton.vue"
-import TextInput from "../components/inputs/TextInput.vue"
+import SecondaryActionButton from "../../components/buttons/SecondaryActionButton.vue"
+import TextInput from "../../components/inputs/TextInput.vue"
 
 export default {
   components: {

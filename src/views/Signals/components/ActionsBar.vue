@@ -15,7 +15,7 @@
 import {
   PrimaryActionButton,
   SecondaryActionButton,
-} from "../components/buttons"
+} from "../../../components/buttons"
 import PDFDownload from "./PDFDownload.vue"
 
 export default {

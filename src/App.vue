@@ -6,8 +6,8 @@
 <script>
 import { mapGetters } from "vuex"
 
-import Signals from "./views/Signals.vue"
-import AddToken from "./views/AddToken.vue"
+import Signals from "./views/Signals/Signals.vue"
+import AddToken from "./views/AddToken/AddToken.vue"
 
 export default {
   components: { Signals, AddToken },
