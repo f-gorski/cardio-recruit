@@ -1,8 +1,8 @@
 <template>
   <td class="table__name-cell">
-    <span>
+    <span class="table__name-cell-content">
       <span>{{ name }}</span>
-      <span v-show="isNew" class="new-indicator">NEW</span>
+      <sup v-show="isNew" class="new-indicator">NEW</sup>
     </span>
   </td>
 </template>
@@ -19,12 +19,14 @@ export default {
 <style>
 .table__name-cell {
   padding: 20px 30px;
-  /* position: relative; */
+}
+.table__name-cell-content {
+  position: relative;
 }
 .new-indicator {
   position: absolute;
-  top: -1.5em;
-  right: -2.8em;
+  top: -0.5em;
+  right: -2.5em;
   font-size: 0.6em;
   font-weight: 800;
   color: #f57164;
